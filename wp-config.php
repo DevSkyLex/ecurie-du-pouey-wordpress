@@ -19,20 +19,39 @@
  */
 
 // ** Database settings - You can get this info from your web host ** //
+// /** The name of the database for WordPress */
+// define( 'DB_NAME', 'if0_37512536_wp86155' );
+
+// /** Database username */
+// define( 'DB_USER', '37512536_5' );
+
+// /** Database password */
+// define( 'DB_PASSWORD', 'p8l[Sj906@' );
+
+// /** Database hostname */
+// define( 'DB_HOST', 'sql206.byetcluster.com' );
+
+// /** Database charset to use in creating database tables. */
+// define( 'DB_CHARSET', 'utf8mb4' );
+
+/** The database collate type. Don't change this if in doubt. */
+// define( 'DB_COLLATE', '' );
+
+// ** Database settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-define( 'DB_NAME', 'if0_37512536_wp86155' );
+define( 'DB_NAME', 'local' );
 
 /** Database username */
-define( 'DB_USER', '37512536_5' );
+define( 'DB_USER', 'root' );
 
 /** Database password */
-define( 'DB_PASSWORD', 'p8l[Sj906@' );
+define( 'DB_PASSWORD', 'root' );
 
 /** Database hostname */
-define( 'DB_HOST', 'sql206.byetcluster.com' );
+define( 'DB_HOST', 'localhost' );
 
 /** Database charset to use in creating database tables. */
-define( 'DB_CHARSET', 'utf8mb4' );
+define( 'DB_CHARSET', 'utf8' );
 
 /** The database collate type. Don't change this if in doubt. */
 define( 'DB_COLLATE', '' );
