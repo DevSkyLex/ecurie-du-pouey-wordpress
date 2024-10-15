@@ -1,53 +1,39 @@
 <?php
-namespace Elementor;
-
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-class Horses_Widget extends Widget_Base {
+use Elementor\Widget_Base;
+class Horses_Widget  extends Widget_Base {
 
-    // Widget Name
-    public function get_name() {
-        return 'horses_widget';
-    }
+	public function get_name() {
+		return 'hello_world_widget_1';
+	}
 
-    // Widget Title
-    public function get_title() {
-        return __( 'Horses Widget', 'elementor-horses' );
-    }
+	public function get_title() {
+		return esc_html__( 'Hello World 1', 'elementor-widget' );
+	}
 
-    // Widget Icon
-    public function get_icon() {
-        return 'eicon-post-list';
-    }
+	public function get_icon() {
+		return 'eicon-code';
+	}
 
-    // Widget Categories
-    public function get_categories() {
-        return [ 'basic' ]; // or another category that you want
-    }
+	public function get_categories() {
+		return [ 'Basic' ];
+	}
 
-    // Widget Controls/Settings
-    protected function _register_controls() {
-        $this->start_controls_section(
-            'content_section',
-            [
-                'label' => __( 'Content', 'elementor-horses' ),
-                'tab'   => \Elementor\Controls_Manager::TAB_CONTENT,
-            ]
-        );
+	public function get_keywords() {
+		return [ 'hello', 'world' ];
+	}
 
-        // Add controls here
-        $this->end_controls_section();
-    }
+	protected function render() {
+		?>
+		<p> Hello World </p>
+		<?php
+	}
 
-    // Widget Render Output
-    protected function render() {
-        echo '<div>This is the horses widget content.</div>';
-    }
-
-    // Widget Preview (for Elementor editor)
-    protected function _content_template() {
-        ?>
-        <div>This is the horses widget content.</div>
-        <?php
-    }
+	protected function content_template() {
+		?>
+		<p> Hello World </p>
+		<?php
+	}
 }
+
