@@ -22,12 +22,12 @@
 
 /**
  * Fonction load_env
- * 
- * Fonction personnalisée pour charger les variables 
+ *
+ * Fonction personnalisée pour charger les variables
  * d'environnement du fichier .env
- * 
+ *
  * @author Valentin FORTIN <contact@valentin-fortin.pro>
- * 
+ *
  * @return void - Aucune valeur de retour
  */
 function load_env(): void
@@ -125,8 +125,8 @@ $table_prefix = 'wp_';
  *
  * @link https://wordpress.org/support/article/debugging-in-wordpress/
  */
-if (!defined('WP_DEBUG')) {
-  define('WP_DEBUG', false);
+if ( ! defined( 'WP_DEBUG' ) ) {
+	define( 'WP_DEBUG', true );
 }
 
 define('WP_ENVIRONMENT_TYPE', 'local');
