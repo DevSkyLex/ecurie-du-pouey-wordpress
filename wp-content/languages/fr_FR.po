@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the WordPress - 6.6.x - Development package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-07-31 15:00:15+0000\n"
+"PO-Revision-Date: 2024-09-27 09:59:26+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -518,7 +518,7 @@ msgstr "Le nom du bloc doit être une chaîne ou un tableau."
 #. translators: 1: A URL to a post, 2: Hidden accessibility text: Post title
 #: wp-includes/blocks/latest-posts.php:161
 msgid "… <a class=\"wp-block-latest-posts__read-more\" href=\"%1$s\" rel=\"noopener noreferrer\">Read more<span class=\"screen-reader-text\">: %2$s</span></a>"
-msgstr "… <a class=\"wp-block-latest-posts__read-more\" href=\"%1$s\" rel=\"noopener noreferrer\">Lire la suite :<span class=\"screen-reader-text\"> %2$s</span></a>"
+msgstr "… <a class=\"wp-block-latest-posts__read-more\" href=\"%1$s\" rel=\"noopener noreferrer\">Lire la suite<span class=\"screen-reader-text\"> : %2$s</span></a>"
 
 #: wp-includes/block-supports/typography.php:552
 msgid "`boolean` type for second argument `$settings` is deprecated. Use `array()` instead."
