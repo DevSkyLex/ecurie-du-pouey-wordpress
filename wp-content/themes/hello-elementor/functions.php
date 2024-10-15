@@ -263,3 +263,155 @@ if ( ! function_exists( 'hello_elementor_body_open' ) ) {
 		wp_body_open();
 	}
 }
+
+/** Custom */
+
+/** Shortcodes */
+add_shortcode( 'mes_chevaux', 'mes_chevaux_func' );
+
+/**
+ * Fonction qui permet d'afficher les chevaux 
+ * @param $atts - référence du cheval 
+ * @return false|string 
+ */
+function mes_chevaux_func( $atts ) {
+    
+    // Get ACF field from options page (if needed, based on your comment)
+    $locations = get_field('your_options_field', 'option');  // Example for options page ACF
+
+    // Define query parameters
+    $args = array(
+        'post_type'      => 'pouey_horse',
+        'posts_per_page' => -1,  // You can change this to limit the number of horses displayed
+        'post_status'    => 'publish'
+    );
+
+    // Query the horses
+    $horses = new WP_Query($args);
+
+    // Start HTML output
+    $html = "<div class='horses-list'>";
+
+    // Check if there are any posts
+    if( $horses->have_posts() ) {
+
+        // Loop through each horse post
+        while( $horses->have_posts() ) {
+            $horses->the_post();
+
+            // Get ACF custom fields
+            $horse_name = get_field('pouey-horse');  // Custom text field for horse name
+            $horse_image = get_field('image_du_cheval');  // Image field returning a URL
+
+            // Create the HTML for each horse
+            $html .= "<div class='horse-item'>";
+            
+            // Horse title (from WP post title)
+            $html .= "<h2>" . get_the_title() . "</h2>";
+            
+            // Custom ACF field (horse name)
+            if( $horse_name ) {
+                $html .= "<p>Nom du cheval: " . esc_html($horse_name) . "</p>";
+            }
+
+            // Horse image
+            if( $horse_image ) {
+                $html .= "<div class='horse-image'><img src='" . esc_url($horse_image) . "' alt='" . esc_attr($horse_name) . "' /></div>";
+            }
+
+            // Optional: Add more fields or metadata here if needed
+
+            $html .= "</div>";  // Close horse-item
+        }
+        // Reset post data
+        wp_reset_postdata();
+    } else {
+        // No horses found
+        $html .= "<p>Aucun cheval trouvé.</p>";
+    }
+
+    $html .= "</div>";  // Close horses-list
+
+    return $html;
+}
+
+
+
+/**
+ * Fonction qui permet d'afficher la propriété "à l'affiche" via le shortcode avec la référence de la propriété
+ * @param $atts - référence de la propriété (se trouve dans le CPT des propriétés en backoffice > "réf")
+ * @return false|string - A noter : retourne aussi un template html si le path du template est trouvé
+ */
+function display_horses($atts) {
+
+    $attributes = shortcode_atts([
+        'ref' => '',
+    ], $atts);
+
+    $ref_id = $attributes['ref'];
+    //$selectedPropertyImg = $atts['image'];
+
+        $args = array(
+            'post_type'      => 'pouey_horse',
+            'posts_per_page' => 1,
+            'post_status'    => 'publish'
+        );
+
+    $property_query = new WP_Query($args);
+    $html = '';
+
+    if( $property_query->have_posts() ) :
+        while( $property_query->have_posts() ) : $property_query->the_post();
+            $property_images_urls = [];
+            $link = get_permalink(get_the_ID());
+            $image_url = wp_get_attachment_image_url( get_post_thumbnail_id( get_the_ID() ), 'full' );
+           
+            if (!empty($property_images_infos)) {
+                foreach ($property_images_infos as $image) {
+                    if(!empty($image->ID)){
+                        $property_images_urls[] = ['id' => $image->ID, 'guid' => $image->guid];
+                    }
+                }
+            }
+
+            if (!empty($property_images_urls)){
+                $image_url = wp_get_attachment_image_url(pathinfo(basename($property_images_urls[0]['id']), PATHINFO_FILENAME), 'full' );
+            }
+
+            var_dump( wp_get_attachment_image_url($property_images_urls[0]['id'], PATHINFO_FILENAME));
+
+            $html .= '<div class="star-property-template-wrapper" style="display: flex;">';
+            $html .= '<div class="star-property-template elementor-container">';
+
+            if (!empty($image_url)) {
+                $html .= '<div class="star-property-template__image-wrapper">';
+                $html .= '<img src="' . esc_url( $image_url ) . '" alt="' . esc_attr( get_the_title() ) . '" />';
+                $html .= '</div>';
+            }
+
+            $html .= '<div class="star-property-template__description-wrapper">';
+
+            $html .= '<div class="property-label">';
+            $html .= '<h2 class="title hyphens">' . the_title('', '', false) . '</h2>';
+            $html .=  '<div class="read-more">';
+            $html .= '<a href="' . esc_url($link) . '">';
+            $html .= esc_html__('discover more', 'wpresidence');
+            $html .= '<i class="fas fa-angle-right"></i>';
+            $html .= '</a>';
+            $html .= '</div>';
+
+            $html .= '</div>';
+
+            $html .= '</div>';
+            $html .= '</div>';
+            $html .= '</div>';
+
+        endwhile;
+        wp_reset_postdata();
+    endif;
+
+    return $html ?? "";
+
+}
+
+add_shortcode('display_star_property', 'display_star_property_function');
