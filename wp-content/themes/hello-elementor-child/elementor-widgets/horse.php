@@ -6,14 +6,15 @@ use Elementor\Widget_Base;
 use Elementor\Controls_Manager;
 
 if (!defined('ABSPATH')) exit; 
-class Horses extends Widget_Base {
+
+class Horse extends Widget_Base {
 
     public function get_name() {
-        return 'horses'; 
+        return 'horse'; 
     }
 
     public function get_title() {
-        return 'Horses'; 
+        return 'Horse'; 
     }
 
     public function get_icon() {
@@ -33,27 +34,66 @@ class Horses extends Widget_Base {
             ]
         );
 
-        // Control for the number of horses to display
+        $horse_reference_options = $this->get_horse_references();
+
         $this->add_control(
-            'number_of_horses',
+            'horse_reference', 
             [
-                'label' => 'Number of Horses',
-                'type' => Controls_Manager::NUMBER,
-                'default' => -1, // Default to show all horses
+                'label' => __('Horse Reference', 'text-domain'),
+                'type' => Controls_Manager::SELECT,
+                'options' => $horse_reference_options, 
+                'default' => '',
+                'description' => __('Select a horse reference to display.', 'text-domain'),
             ]
         );
 
         $this->end_controls_section();
     }
 
+    // Function to retrieve horse references from ACF
+    protected function get_horse_references() {
+        
+        $args = [
+            'post_type' => 'pouey_horse',
+            'posts_per_page' => -1,
+            'post_status' => 'publish',
+        ];
+        $horses_query = new \WP_Query($args);
+        $references = [];
+
+     
+        if ($horses_query->have_posts()) {
+            while ($horses_query->have_posts()) {
+                $horses_query->the_post();
+                $horse_reference = get_field('horse_reference');
+                $horse_title = get_the_title();
+
+                if ($horse_reference) {
+                    $references[$horse_reference] = $horse_title . ' (' . $horse_reference . ')';
+                }
+            }
+            wp_reset_postdata();
+        }
+
+        return $references; 
+    }
+
     protected function render() {
-        $settings = $this->get_settings_for_display();
-        $number_of_horses = $settings['number_of_horses'];
+        $settings = $this->get_settings_for_display(); 
+
+        $ref_id = $settings['horse_reference'];
 
         $args = [
             'post_type' => 'pouey_horse',
-            'posts_per_page' => $number_of_horses,
-            'post_status' => 'publish'
+            'posts_per_page' => -1,
+            'post_status' => 'publish',
+            'meta_query' => [
+                [
+                    'key'     => 'horse_reference',
+                    'value'   => $ref_id,
+                    'compare' => '='
+                ],
+            ],
         ];
 
         $horses = new \WP_Query($args);
@@ -131,37 +171,30 @@ class Horses extends Widget_Base {
     protected function _content_template() {
         ?>
         <# 
-        // Get the number of horses to display
-        var numberOfHorses = settings.number_of_horses;
+        // Example static content for the editor view
         var horsesHtml = '<div class="horses-list">';
-        
-        // Example data to display in the editor (replace with dynamic content if needed)
-        for (var i = 0; i < numberOfHorses; i++) {
-            horsesHtml += '<div class="card-wrapper">';
-            horsesHtml += '  <div class="card-image"><img src="https://images.pexels.com/photos/635499/pexels-photo-635499.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Horse Image ' + (i + 1) + '" /></div>';
-            horsesHtml += '  <div class="card-content">';
-            horsesHtml += '    <div class="horse-caption">';
-            horsesHtml += '      <div class="title-wrapper">';
-            horsesHtml += '        <h2 class="title">Cheval - nom n° ' + (i + 1) + '</h2>';
-            horsesHtml += '        <div class="stars"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></div>';
-            horsesHtml += '      </div>';
-            horsesHtml += '      <div class="horse-favoris"><span>&#9829;</span></div>';
-            horsesHtml += '    </div>';
-            horsesHtml += '    <hr class="separator">';
-            horsesHtml += '    <div class="horse-criterias">';
-            horsesHtml += '      <ul class="criterias-list">';
-            horsesHtml += '        <li class="list-item">Race: <span class="list-value">Anglo-Arabe</span></li>';
-            horsesHtml += '        <li class="list-item">Sexe: <span class="list-value">Femelle</span></li>';
-            horsesHtml += '      </ul>';
-            horsesHtml += '    </div>';
-            horsesHtml += '    <div class="card-button"><a href="#">Découvrir</a></div>';
-            horsesHtml += '  </div>'; // Close card-content
-            horsesHtml += '</div>'; // Close card-wrapper
-        }
-
+        horsesHtml += '<div class="card-wrapper">';
+        horsesHtml += '  <div class="card-image"><img src="https://images.pexels.com/photos/635499/pexels-photo-635499.jpeg" alt="Horse Image" /></div>';
+        horsesHtml += '  <div class="card-content">';
+        horsesHtml += '    <div class="horse-caption">';
+        horsesHtml += '      <div class="title-wrapper">';
+        horsesHtml += '        <h2 class="title">Cheval - Exemple</h2>';
+        horsesHtml += '        <div class="stars"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></div>';
+        horsesHtml += '      </div>';
+        horsesHtml += '      <div class="horse-favoris"><span>&#9829;</span></div>';
+        horsesHtml += '    </div>';
+        horsesHtml += '    <hr class="separator">';
+        horsesHtml += '    <div class="horse-criterias">';
+        horsesHtml += '      <ul class="criterias-list">';
+        horsesHtml += '        <li class="list-item">Race: <span class="list-value">Anglo-Arabe</span></li>';
+        horsesHtml += '        <li class="list-item">Sexe: <span class="list-value">Femelle</span></li>';
+        horsesHtml += '      </ul>';
+        horsesHtml += '    </div>';
+        horsesHtml += '    <div class="card-button"><a href="#">Découvrir</a></div>';
+        horsesHtml += '  </div>'; // Close card-content
+        horsesHtml += '</div>'; // Close card-wrapper
         horsesHtml += '</div>'; // Close horses-list
         
-        // Render the HTML
         print(horsesHtml);
         #>
         <?php

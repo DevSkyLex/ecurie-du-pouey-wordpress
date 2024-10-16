@@ -22,26 +22,143 @@ License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
 */
 
-.advertisement__label-heading {
-    padding: .5rem 1.25rem;
-    background-color: #03657f;
-    color: #fff;
+/* Name=Default */
+
+
+/* Custom style - Horse widget */
+
+.horses-list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.card-wrapper {
+    margin: 0;
+    max-width: 343px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    row-gap: 20px;
+}
+
+.card-wrapper .card-image {
     width: 100%;
-    font-weight: 800;
-    font-size: 1.5rem;
-    border-top-left-radius: .75rem;
-    border-top-right-radius: .75rem;
+    border-radius: 10px;
+ 
+    img {
+        border-radius: 10px;
+        width: 100%;
+        max-height: 200px;
+        object-fit: cover;
+        aspect-ratio: 1;
+    }
 }
 
-.advertisement__content__heading {
-    font-weight: 500;
-    font-size: 2.5rem;
-    margin-bottom: 1.25rem;
+.card-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: 20px;
 }
 
-.advertisement__content {
-    padding: 1rem;
-    background-color: #fff;
-    color: #6d6d6d;
-    font-size: 2rem;
+
+
+.card-content .horse-caption {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.card-content .horse-criterias {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-content .horse-favoris {
+    min-width: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+}
+
+.card-content .horse-favoris span {
+    padding: 5px;
+}
+
+.card-content .horse-caption .title-wrapper {
+    display: flex;
+    flex-direction: column;
+    row-gap: 3px;
+}
+
+.card-content .horse-caption .title-wrapper .title {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 0;
+}
+
+.stars {
+    display: flex;
+    gap: 5px;
+}
+
+.criterias-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.criterias-list .list-item {
+    font-weight: 600;
+}
+
+.criterias-list .list-value {
+    font-weight: 400;
+}
+
+.card-button {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.card-button a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+a, a:hover, a:focus {
+    color: black;
+    text-decoration: none;
+}
+
+.separator {
+    width: 100%;
+    height: 2px;
+    color:#D1D9E2;
+    background-color: #D1D9E2;
+    border: none;
+    margin: 0;
 }
