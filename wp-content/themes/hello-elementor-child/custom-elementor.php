@@ -17,6 +17,7 @@ class Widget_Loader{
   private function include_widgets_files(){
     require_once(__DIR__ . '/elementor-widgets/advertisement.php');
     require_once(__DIR__ . '/elementor-widgets/horses.php');
+    require_once(__DIR__ . '/elementor-widgets/horse.php');
   }
 
   public function register_widgets(){
@@ -25,6 +26,7 @@ class Widget_Loader{
 
     \Elementor\Plugin::instance()->widgets_manager->register(new Widgets\Advertisement() );
     \Elementor\Plugin::instance()->widgets_manager->register(new Widgets\Horses()); 
+    \Elementor\Plugin::instance()->widgets_manager->register(new Widgets\Horse()); 
   }
 
   public function __construct(){

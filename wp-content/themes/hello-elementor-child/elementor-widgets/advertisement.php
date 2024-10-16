@@ -19,7 +19,7 @@ class Advertisement extends Widget_Base{
   }
 
   public function get_icon(){
-    return 'fa fa-camera';
+    return 'fa-solid fa-rectangle-ad';
   }
 
   public function get_categories(){
