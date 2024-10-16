@@ -2,15 +2,8 @@
 <project version="4">
   <component name="WebServers">
     <option name="servers">
-      <webServer id="3c2de097-666c-43c3-9af2-4037eb885d0d" name="Ecuries[PROD]" url="http://ftpupload.net">
-        <fileTransfer rootFolder="/htdocs" host="ftpupload.net" port="21">
-          <advancedOptions>
-            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
-          </advancedOptions>
-        </fileTransfer>
-      </webServer>
       <webServer id="a5e1462a-0316-41fe-9ee7-bd77b8492011" name="POueyO2[Prod]" url="http://ftp.oyyx5826.odns.fr">
-        <fileTransfer rootFolder="" host="ftp.oyyx5826.odns.fr" port="21">
+        <fileTransfer host="ftp.oyyx5826.odns.fr" port="21">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
           </advancedOptions>

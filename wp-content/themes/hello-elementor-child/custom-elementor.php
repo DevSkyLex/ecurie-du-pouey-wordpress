@@ -15,7 +15,7 @@ class Widget_Loader{
 
 
   private function include_widgets_files(){
-    require_once(__DIR__ . '/elementor-widgets/advertisement.php');
+    require_once(__DIR__ . '/elementor-widgets/horse_filter.php');
     require_once(__DIR__ . '/elementor-widgets/horses.php');
     require_once(__DIR__ . '/elementor-widgets/horse.php');
   }
@@ -23,9 +23,8 @@ class Widget_Loader{
   public function register_widgets(){
 
     $this->include_widgets_files();
-
-    \Elementor\Plugin::instance()->widgets_manager->register(new Widgets\Advertisement() );
-    \Elementor\Plugin::instance()->widgets_manager->register(new Widgets\Horses()); 
+    \Elementor\Plugin::instance()->widgets_manager->register(new Widgets\Horse_Filter());
+    \Elementor\Plugin::instance()->widgets_manager->register(new Widgets\Horses());
     \Elementor\Plugin::instance()->widgets_manager->register(new Widgets\Horse()); 
   }
 
@@ -36,14 +35,3 @@ class Widget_Loader{
 
 // Instantiate Plugin Class
 Widget_Loader::instance();
-
-// function register_horses_widget( $widgets_manager ) {
-//     if ( class_exists( 'Elementor\Horses_Widget' ) ) {
-//         require_once( __DIR__ . '/elementor-widgets/horses-widget.php' );
-//         $widgets_manager->register( new Horses_Widget() );
-//     } else {
-//         error_log( 'Elementor\Horses_Widget class does not exist' );
-//     }
-// }
-
-// add_action( 'elementor/widgets/register', 'register_horses_widget' );
