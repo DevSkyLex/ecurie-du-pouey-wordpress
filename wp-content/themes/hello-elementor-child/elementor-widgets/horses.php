@@ -11,11 +11,11 @@ if (!defined('ABSPATH')) exit;
 class Horses extends Widget_Base {
 
     public function get_name() {
-        return 'horses';
+        return 'chevaux';
     }
 
     public function get_title() {
-        return 'Horses';
+        return 'Chevaux';
     }
 
     public function get_icon() {
@@ -31,7 +31,7 @@ class Horses extends Widget_Base {
         $this->start_controls_section(
             'section_typography',
             [
-                'label' => __( 'Typography', 'horses' ),
+                'label' => __( 'Typography', 'chevaux' ),
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -40,7 +40,7 @@ class Horses extends Widget_Base {
             Group_Control_Typography::get_type(),
             [
                 'name' => 'content_typography',
-                'label' => __( 'Typography', 'horses' ),
+                'label' => __( 'Typography', 'chevaux' ),
                 'selector' => '{{WRAPPER}} .font-family-card',
             ]
         );
@@ -99,7 +99,6 @@ class Horses extends Widget_Base {
                 $horse_age = get_field('age_category');
                 $horse_sex = get_field('sexe');
                 $horse_status = get_field('statut_du_cheval');
-                $horse_results = get_field('resultats_aux_concours');
                 $horse_hair = get_field('couleur_de_la_robe');
                 $horse_price = get_field('prix');
 
@@ -108,8 +107,7 @@ class Horses extends Widget_Base {
                     data-age='" . esc_attr($horse_age) . "'
                     data-sex='" . esc_attr($horse_sex) . "'
                     data-color='" . esc_attr($horse_hair) . "'
-                    data-price='" . esc_attr($horse_price) . "'
-                    data-result='" . esc_attr($horse_results) . "'>";
+                    data-price='" . esc_attr($horse_price) . "' >";
                 echo "  <div class='card-image'>";
                 echo "    <img src='" . esc_url($horse_image) . "' alt='" . esc_attr($horse_name) . "' />";
                 echo "  </div>";
@@ -138,8 +136,6 @@ class Horses extends Widget_Base {
                 echo "</div>";
             }
             wp_reset_postdata();
-        } else {
-            echo "<p>Aucun cheval trouvé.</p>";
         }
 
         echo "</div>";

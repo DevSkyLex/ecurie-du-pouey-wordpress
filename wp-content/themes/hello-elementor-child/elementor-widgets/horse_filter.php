@@ -14,7 +14,7 @@ class Horse_Filter extends Widget_Base {
     }
 
     public function get_title() {
-        return 'Horse Filter';
+        return 'Filtre Chevaux';
     }
 
     public function get_icon() {
@@ -76,12 +76,6 @@ class Horse_Filter extends Widget_Base {
             'label_block' => true,
         ]);
 
-        $this->add_control('filter_title_results', [
-            'label' => 'Titre pour les filtres de résultat aux concours',
-            'type' => Controls_Manager::TEXT,
-            'default' => 'Résultats aux concours',
-            'label_block' => true,
-        ]);
 
         $this->add_control('filter_title_price', [
             'label' => 'Titre pour le filtre de prix',
@@ -126,14 +120,6 @@ class Horse_Filter extends Widget_Base {
             'default' => 'no',
         ]);
 
-        $this->add_control('show_results_filter', [
-            'label' => 'Résultats aux concours',
-            'type' => Controls_Manager::SWITCHER,
-            'label_on' => 'Yes',
-            'label_off' => 'No',
-            'return_value' => 'yes',
-            'default' => 'no',
-        ]);
 
         $this->add_control('show_price_filter', [
             'label' => 'Filtrer par prix',
@@ -175,7 +161,6 @@ class Horse_Filter extends Widget_Base {
         $sexes = [];
         $prices = [];
         $colors = [];
-        $results = [];
         $isSell = false;
         $min_price = 0;
         $max_price = 10000;
@@ -188,7 +173,6 @@ class Horse_Filter extends Widget_Base {
                 $horse_age = get_field('age_category');
                 $horse_sex = get_field('sexe');
                 $horse_status = get_field('statut_du_cheval');
-                $horse_results = get_field('resultats_aux_concours');
                 $horse_hair = get_field('couleur_de_la_robe');
                 $horse_price = get_field('prix');
 
@@ -205,9 +189,7 @@ class Horse_Filter extends Widget_Base {
                 if ($horse_sex) {
                     $sexes[] = $horse_sex;
                 }
-                if ($horse_results) {
-                    $results[] = $horse_results;
-                }
+
                 if ($horse_hair) {
                     $colors[] = $horse_hair;
                 }
@@ -223,9 +205,8 @@ class Horse_Filter extends Widget_Base {
         $races = array_unique($races);
         $ages = array_unique($ages);
         $sexes = array_unique($sexes);
-        $results = array_unique($results);
         $colors = array_unique($colors);
-//        $prices = array_unique($prices);
+
 
         echo '<div class="horse-filter-widget horse-filters font-family-filter">';
 
@@ -294,17 +275,6 @@ class Horse_Filter extends Widget_Base {
             echo '<input type="range" min="' . esc_attr($min_price) . '" max="' . esc_attr($max_price) . '" value="' . esc_attr($max_price) . '" id="upper">';
             echo '</div>';
             echo '</fieldset>';
-            echo '</div>';
-        }
-
-
-
-        if ('yes' === $settings['show_results_filter']) {
-            echo '<h4>' . esc_html($settings['filter_title_results']) . '</h4>';
-            echo '<div class="filter-options">';
-            foreach ($results as $result) {
-                echo "<label><input type='checkbox' class='sex-filter' value='" . esc_attr($result) . "'> " . esc_html($result) . "</label><br>";
-            }
             echo '</div>';
         }
 

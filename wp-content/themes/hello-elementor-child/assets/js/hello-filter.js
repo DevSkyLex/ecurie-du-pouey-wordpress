@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const hairFilters = document.querySelectorAll('.hair-filter');
     const lowerPrice = document.getElementById('lower');
     const upperPrice = document.getElementById('upper');
-    const resultFilters = document.querySelectorAll('.result-filter');
 
     const  lowerSlider = document.querySelector('#lower');
     const  upperSlider = document.querySelector('#upper');
@@ -19,8 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
         ...raceFilters,
         ...ageFilters,
         ...sexFilters,
-        ...hairFilters,
-        ...resultFilters
+        ...hairFilters
     ];
 
     allCheckboxFilters.forEach(filter => {
@@ -85,14 +83,6 @@ document.addEventListener('DOMContentLoaded', function () {
             if (shouldShow && minPrice !== null && maxPrice !== null) {
                 const cardPrice = parseFloat(card.dataset.price);
                 if (cardPrice < minPrice || cardPrice > maxPrice) {
-                    shouldShow = false;
-                }
-            }
-
-            // Check results filter
-            if (shouldShow && selectedResults.length > 0) {
-                const cardResult = card.dataset.result;
-                if (!selectedResults.includes(cardResult)) {
                     shouldShow = false;
                 }
             }

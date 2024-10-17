@@ -28,18 +28,18 @@ License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
 .horses-list {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
     column-gap: 32px;
     row-gap: 64px;
 }
 
 .horses-list .card-wrapper {
-    margin: 0;
-    max-width: 343px;
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+  margin: 0;
+  max-width: 343px;
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
 }
 
 .horses-list .selling {
@@ -107,9 +107,16 @@ License URI: https://www.gnu.org/licenses/gpl-3.0.html
 }
 
 .horses-list .card-content .horse-caption .title-wrapper {
-    display: flex;
-    flex-direction: column;
-    row-gap: 3px;
+  --font-family: var(--e-global-typography-text-font-family);
+  --font-weight: 700;
+  --font-size: 20px;
+
+  font-family: var(--font-family);
+  font-weight: var(--font-weight);
+  font-size: var(--font-size);
+  display: flex;
+  flex-direction: column;
+  row-gap: 3px;
 }
 
 .horses-list .card-content .horse-caption .title-wrapper .title {
@@ -123,6 +130,11 @@ License URI: https://www.gnu.org/licenses/gpl-3.0.html
     gap: 5px;
 }
 
+.stars span {
+  --text-color: var(--e-global-color-accent);
+  color: var(--text-color);
+}
+
 .horses-list .criterias-list {
     list-style-type: none;
     padding: 0;
@@ -130,7 +142,10 @@ License URI: https://www.gnu.org/licenses/gpl-3.0.html
 }
 
 .horses-list .criterias-list .list-item {
-    font-weight: 600;
+  --font-family: var(--e-global-typography-text-font-family);
+
+  font-family: var(--font-family);
+  font-weight: 700;
 }
 
 .horses-list .criterias-list .list-value {
@@ -145,24 +160,43 @@ License URI: https://www.gnu.org/licenses/gpl-3.0.html
 }
 
 .horses-list .card-button a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px 20px;
-    background-color: black;
-    color: white;
-    border-radius: 10px;
-    font-size: 18px;
-    font-weight: bold;
+  --background-color: var(--e-global-color-primary);
+  --font-family: var(--e-global-typography-text-font-family, 'Roboto');
+
+  border: 1px solid transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  font-family: var(--font-family);
+  background-color: var(--background-color);
+  color: white;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  text-decoration: none;
 }
 
-.horses-list .card-button:hover a {
-    opacity: 0.8;
+.horses-list .card-button a:hover,
+.horses-list .card-button a:focus {
+  --outline-color: color-mix(in srgb, var(--e-global-color-primary), transparent 80%);
+  --border-color: var(--e-global-color-primary);
+  --background-color: color-mix(in srgb, var(--e-global-color-primary), #000 20%);
+
+  border: 1px solid var(--border-color);
+  outline-offset: 0px;
+  background-color: var(--background-color);
+  outline: 3px solid var(--outline-color);
 }
+
+/* .horses-list a, .horses-list a:hover, a:focus {
+    color: black;
+    text-decoration: none;
+} */
 
 .horses-list .separator {
     width: 100%;
-    height: 2px;
+    height: 1px;
     color:#D1D9E2;
     background-color: #D1D9E2;
     border: none;
@@ -171,6 +205,16 @@ License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
 /* HORSE FILTERS */
 
+.horse-filters h4 {
+  --text-color: var(--e-global-color-text);
+  --font-size: 18px;
+  --line-height: 23.27px;
+
+  color: var(--text-color);
+  font-size: var(--font-size);
+  line-height: var(--line-height);
+}
+
 .filter-options {
   display: flex;
   flex-direction: column;
@@ -178,7 +222,10 @@ License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
 .filter-options label {
   --gap: 1rem;
+  --font-family: var(--e-global-typography-text-font-family);
+
   display: flex;
+  font-family: var(--font-family);
   align-items: center;
   gap: var(--gap);
 }
@@ -186,11 +233,22 @@ License URI: https://www.gnu.org/licenses/gpl-3.0.html
 .filter-options input[type="checkbox"] {
   --size: 20px;
   --border-color: #7C8B9D;
+  --border-radius: 5px;
 
   appearance: none;
   border: 2px solid var(--border-color);
   width: var(--size);
   height: var(--size);
+  border-radius: var(--border-radius);
+}
+
+.filter-options input[type="checkbox"]:is(:hover, :focus) {
+  --outline-color: color-mix(in srgb, var(--e-global-color-primary), transparent 80%);
+  --border-color: var(--e-global-color-primary);
+
+  border: 2px solid var(--border-color);
+  outline-offset: 0px;
+  outline: 3px solid var(--outline-color);
 }
 
 .filter-options input[type="checkbox"]:checked {
@@ -660,6 +718,17 @@ License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
 
 @media screen and (min-width: 768px) {
+
+    /* ========== WIDGET ========== */
+
+    .horses-list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 32px;
+        row-gap: 64px;
+    }
+
+    /* ========== SINGLE ========== */
 
     .single-horse {
         padding-top: var(--padding-top, 5rem);

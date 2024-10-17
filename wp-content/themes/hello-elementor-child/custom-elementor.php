@@ -17,7 +17,6 @@ class Widget_Loader{
   private function include_widgets_files(){
     require_once(__DIR__ . '/elementor-widgets/horse_filter.php');
     require_once(__DIR__ . '/elementor-widgets/horses.php');
-    require_once(__DIR__ . '/elementor-widgets/horse.php');
   }
 
   public function register_widgets(){
@@ -25,7 +24,6 @@ class Widget_Loader{
     $this->include_widgets_files();
     \Elementor\Plugin::instance()->widgets_manager->register(new Widgets\Horse_Filter());
     \Elementor\Plugin::instance()->widgets_manager->register(new Widgets\Horses());
-    \Elementor\Plugin::instance()->widgets_manager->register(new Widgets\Horse()); 
   }
 
   public function __construct(){

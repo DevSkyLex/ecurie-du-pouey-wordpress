@@ -1,5 +1,4 @@
 <?php
-/* Function to enqueue stylesheet from parent theme */
 
 function child_enqueue__scripts()
 {
@@ -9,9 +8,9 @@ function child_enqueue__scripts()
   wp_enqueue_script(
     'hello-elementor-child-frontend',
     get_stylesheet_directory_uri() . '/assets/js/hello-filter.js',
-    array(), // Load after parent theme script
+    array(),
     null,
-    true // Load in footer
+    true
   );
 }
 
