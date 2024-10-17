@@ -34,7 +34,6 @@ document.addEventListener('DOMContentLoaded', function () {
     function applyFilters() {
         // Get selected values for each filter type
         const selectedRaces = getSelectedValues(raceFilters);
-        const selectedAges = getSelectedValues(ageFilters);
         const selectedSexes = getSelectedValues(sexFilters);
         const selectedColors = getSelectedValues(hairFilters);
         const selectedResults = getSelectedValues(resultFilters);
@@ -51,14 +50,6 @@ document.addEventListener('DOMContentLoaded', function () {
             if (selectedRaces.length > 0) {
                 const cardRace = card.dataset.race;
                 if (!selectedRaces.includes(cardRace)) {
-                    shouldShow = false;
-                }
-            }
-
-            // Check age filter
-            if (shouldShow && selectedAges.length > 0) {
-                const cardAge = card.dataset.age;
-                if (!selectedAges.includes(cardAge)) {
                     shouldShow = false;
                 }
             }

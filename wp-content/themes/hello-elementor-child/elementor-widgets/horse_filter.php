@@ -55,13 +55,6 @@ class Horse_Filter extends Widget_Base {
             'label_block' => true,
         ]);
 
-        $this->add_control('filter_title_age', [
-            'label' => 'Titre pour le filtre des âges',
-            'type' => Controls_Manager::TEXT,
-            'default' => 'Âges',
-            'label_block' => true,
-        ]);
-
         $this->add_control('filter_title_sex', [
             'label' => 'Titre pour les filtres par sexe',
             'type' => Controls_Manager::TEXT,
@@ -93,14 +86,6 @@ class Horse_Filter extends Widget_Base {
             'default' => 'yes',
         ]);
 
-        $this->add_control('show_age_filter', [
-            'label' => "Filtrer par âge",
-            'type' => Controls_Manager::SWITCHER,
-            'label_on' => 'Yes',
-            'label_off' => 'No',
-            'return_value' => 'yes',
-            'default' => 'no',
-        ]);
 
         $this->add_control('show_sex_filter', [
             'label' => 'Filtrer par sexe',
@@ -157,7 +142,6 @@ class Horse_Filter extends Widget_Base {
         $horses = new \WP_Query($args);
 
         $races = [];
-        $ages = [];
         $sexes = [];
         $prices = [];
         $colors = [];
@@ -170,7 +154,6 @@ class Horse_Filter extends Widget_Base {
                 $horses->the_post();
 
                 $horse_race = get_field('race');
-                $horse_age = get_field('age_category');
                 $horse_sex = get_field('sexe');
                 $horse_status = get_field('statut_du_cheval');
                 $horse_hair = get_field('couleur_de_la_robe');
@@ -183,9 +166,7 @@ class Horse_Filter extends Widget_Base {
                 if ($horse_race) {
                     $races[] = $horse_race;
                 }
-                if ($horse_age) {
-                    $ages[] = $horse_age['label'] ?: $horse_age;
-                }
+
                 if ($horse_sex) {
                     $sexes[] = $horse_sex;
                 }
@@ -203,7 +184,6 @@ class Horse_Filter extends Widget_Base {
         }
 
         $races = array_unique($races);
-        $ages = array_unique($ages);
         $sexes = array_unique($sexes);
         $colors = array_unique($colors);
 
@@ -215,15 +195,6 @@ class Horse_Filter extends Widget_Base {
             echo '<div class="filter-options">';
             foreach ($races as $race) {
                 echo "<label><input type='checkbox' class='race-filter' value='" . esc_attr($race) . "'> " . esc_html($race) . "</label><br>";
-            }
-            echo '</div>';
-        }
-
-        if ('yes' === $settings['show_age_filter']) {
-            echo '<h4>' . esc_html($settings['filter_title_age']) . '</h4>';
-            echo '<div class="filter-options">';
-            foreach ($ages as $age) {
-                echo "<label><input type='checkbox' class='age-filter' value='" . esc_attr($age) . "'> " . esc_html($age) . "</label><br>";
             }
             echo '</div>';
         }
@@ -249,7 +220,8 @@ class Horse_Filter extends Widget_Base {
         if ('yes' === $settings['show_price_filter']) {
 
             $currency_symbol = !empty($settings['currency_symbol']) ? $settings['currency_symbol'] : '€';
-
+            echo '<h4>' . esc_html($settings['filter_title_price']) . '</h4>';
+            echo '<span class="currency">Devise: ' . esc_html($currency_symbol) . '</span>';
             echo '<div class="filter-options filter-price-wrapper">';
             echo '<fieldset class="filter-price">';
 
@@ -258,13 +230,10 @@ class Horse_Filter extends Widget_Base {
             // Minimum price input with dynamic currency symbol
             echo '<div class="price-wrap-1">';
             echo '<input id="one" value="' . esc_attr($min_price) . '">';
-            echo '<label for="one">' . esc_html($currency_symbol) . '</label>';
             echo '</div>';
 
-            // Maximum price input with dynamic currency symbol
             echo '<div class="price-wrap-2">';
             echo '<input id="two" value="' . esc_attr($max_price) . '">';
-            echo '<label for="two">' . esc_html($currency_symbol) . '</label>';
             echo '</div>';
 
             echo '</div>';
@@ -285,7 +254,6 @@ class Horse_Filter extends Widget_Base {
         ?>
         <#
         var showRaceFilter = settings.show_race_filter === 'yes';
-        var showAgeFilter = settings.show_age_filter === 'yes';
         var showSexFilter = settings.show_sex_filter === 'yes';
 
         // Simulate fetching horse data
@@ -304,9 +272,7 @@ class Horse_Filter extends Widget_Base {
         if (horse.race && races.indexOf(horse.race) === -1) {
         races.push(horse.race);
         }
-        if (horse.age && ages.indexOf(horse.age) === -1) {
-        ages.push(horse.age);
-        }
+
         if (horse.sexe && sexes.indexOf(horse.sexe) === -1) {
         sexes.push(horse.sexe);
         }
@@ -316,21 +282,11 @@ class Horse_Filter extends Widget_Base {
         <div class="horse-filter-widget horse-filters">
             <# if (showRaceFilter) { #>
             <h4>{{{ settings.filter_title_race }}}</h4>
+            <small> Ceci est une simulation </small>
             <div class="filter-options">
                 <# for (var i = 0; i < races.length; i++) { #>
                 <label>
                     <input type="checkbox" class="race-filter" value="{{ races[i] }}" checked> {{{ races[i] }}}
-                </label><br>
-                <# } #>
-            </div>
-            <# } #>
-
-            <# if (showAgeFilter) { #>
-            <h4>{{{ settings.filter_title_age }}}</h4>
-            <div class="filter-options">
-                <# for (var i = 0; i < ages.length; i++) { #>
-                <label>
-                    <input type="checkbox" class="age-filter" value="{{ ages[i] }}" checked> {{{ ages[i] }}}
                 </label><br>
                 <# } #>
             </div>

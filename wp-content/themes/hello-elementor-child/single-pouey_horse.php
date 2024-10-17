@@ -142,7 +142,7 @@ if ( have_posts() ) :
                 $form_shortcode = '[contact-form-7 id="' . $form_id . '" title="' . esc_attr( $form_post->post_title ) . '"]';
                 echo do_shortcode( $form_shortcode );
                 } else {
-                echo do_shortcode('[contact-form-7 id="c4cb2f6" title="Demande d\'information"]');;
+                echo do_shortcode('[contact-form-7 id="4ec3e2b" title="Contact"]');;
                 } ?>
             </section>
         </main>
