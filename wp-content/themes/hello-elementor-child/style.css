@@ -34,6 +34,14 @@ License URI: https://www.gnu.org/licenses/gpl-3.0.html
     row-gap: 20px;
 }
 
+.horse-contact {
+    margin-bottom : 30px;
+}
+
+.horse-results {
+    display: none;
+}
+
 .horses-list .card-wrapper {
   margin: 0;
   max-width: 343px;
