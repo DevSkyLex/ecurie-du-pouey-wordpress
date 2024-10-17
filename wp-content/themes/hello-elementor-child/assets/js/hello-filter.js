@@ -36,7 +36,6 @@ document.addEventListener('DOMContentLoaded', function () {
         const selectedRaces = getSelectedValues(raceFilters);
         const selectedSexes = getSelectedValues(sexFilters);
         const selectedColors = getSelectedValues(hairFilters);
-        const selectedResults = getSelectedValues(resultFilters);
 
         const sportButton = document.querySelector('#sport-btn');
         const courseButton = document.querySelector('#course-btn');
@@ -50,17 +49,20 @@ document.addEventListener('DOMContentLoaded', function () {
         let filterBySport = false;
 
 
-        sportButton.addEventListener('click', () => {
-            filterBySport = true;
-            filterByCourse = false;
-            applyFilters();
-        });
+        if(sportButton && courseButton) {
+            sportButton.addEventListener('click', () => {
+                filterBySport = true;
+                filterByCourse = false;
+                applyFilters();
+            });
 
-        courseButton.addEventListener('click', () => {
-            filterByCourse = true;
-            filterBySport = false;
-            applyFilters();
-        });
+            courseButton.addEventListener('click', () => {
+                filterByCourse = true;
+                filterBySport = false;
+                applyFilters();
+            });
+        }
+
 
 
         horseCards.forEach(card => {
