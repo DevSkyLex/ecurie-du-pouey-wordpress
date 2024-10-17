@@ -93,12 +93,12 @@ if ( have_posts() ) :
                     </div>
                 </div>
             </section>
-            <section class="horse-results">
+            <section class="horse-results" style="display:none">
                 <div class="results-title">
                     <h1 class="title horse-section-title global-elementor-font">Classement top 100</h1>
                 </div>
 
-                <div class="accordeon-wrapper" style="display:none">
+                <div class="accordeon-wrapper" >
                     <div class="collapsible-accordion">
                         <div class="collapsible-item">
                             <input type="radio" id="rad1" name="radio">
