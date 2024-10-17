@@ -101,13 +101,18 @@ class Horses extends Widget_Base {
                 $horse_status = get_field('statut_du_cheval');
                 $horse_hair = get_field('couleur_de_la_robe');
                 $horse_price = get_field('prix');
+                $sportRace = get_field('sport_race');
 
-                echo "<div class='font-family-card card-wrapper " . ($horse_status ? "selling" : "no-sell") . "' 
-                    data-race='" . esc_attr($horse_race) . "'
-                    data-age='" . esc_attr($horse_age) . "'
-                    data-sex='" . esc_attr($horse_sex) . "'
-                    data-color='" . esc_attr($horse_hair) . "'
-                    data-price='" . esc_attr($horse_price) . "' >";
+                echo "<div class='font-family-card card-wrapper " .
+                    ($horse_status ? "selling " : "no-sell ") .
+                    (!empty($sportRace) && isset($sportRace[0]) ? esc_attr($sportRace[0]) . " " : "") .
+                    (!empty($sportRace) && isset($sportRace[1]) ? esc_attr($sportRace[1]) . " " : "") .
+                    "' data-race='" . esc_attr($horse_race) . "' " .
+                    "data-age='" . esc_attr($horse_age) . "' " .
+                    "data-sex='" . esc_attr($horse_sex) . "' " .
+                    "data-color='" . esc_attr($horse_hair) . "' " .
+                    "data-price='" . esc_attr($horse_price) . "'>";
+
                 echo "  <div class='card-image'>";
                 echo "    <img src='" . esc_url($horse_image) . "' alt='" . esc_attr($horse_name) . "' />";
                 echo "  </div>";

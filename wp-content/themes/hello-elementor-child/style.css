@@ -503,10 +503,6 @@ License URI: https://www.gnu.org/licenses/gpl-3.0.html
     font-family: var(--e-global-typography-text-font-family, "Roboto"), sans-serif;
 }
 
-.single-pouey_horse .site-header {
-    background-color: var(--e-global-color-primary, #0C1B26) !important;
-}
-
 /* ---- Single pouey horse ---- */
 
 .single-pouey_horse .single-horse {
@@ -574,9 +570,6 @@ License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
 .single-horse .story-images .video-block iframe {
     width: 100%;
-    position: absolute;
-    bottom: 0;
-    left: 0;
     border-radius: 10px;
 }
 
@@ -621,7 +614,7 @@ License URI: https://www.gnu.org/licenses/gpl-3.0.html
 .single-horse .horse-details-story .horse-description-wrapper {
     display: flex;
     flex-direction: column;
-    row-gap: 20px;
+    row-gap: 0px;
 }
 
 .horse-details-story .horse-description-wrapper ul {

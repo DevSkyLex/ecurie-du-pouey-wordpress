@@ -32,21 +32,41 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function applyFilters() {
-        // Get selected values for each filter type
+
         const selectedRaces = getSelectedValues(raceFilters);
         const selectedSexes = getSelectedValues(sexFilters);
         const selectedColors = getSelectedValues(hairFilters);
         const selectedResults = getSelectedValues(resultFilters);
 
-        // Get price range values if they exist
+        const sportButton = document.querySelector('#sport-btn');
+        const courseButton = document.querySelector('#course-btn');
+
+
         const minPrice = lowerPrice ? parseFloat(lowerPrice.value) : null;
         const maxPrice = upperPrice ? parseFloat(upperPrice.value) : null;
 
-        // Loop through each horse card
+
+        let filterByCourse = false;
+        let filterBySport = false;
+
+
+        sportButton.addEventListener('click', () => {
+            filterBySport = true;
+            filterByCourse = false;
+            applyFilters();
+        });
+
+        courseButton.addEventListener('click', () => {
+            filterByCourse = true;
+            filterBySport = false;
+            applyFilters();
+        });
+
+
         horseCards.forEach(card => {
             let shouldShow = true;
 
-            // Check race filter
+
             if (selectedRaces.length > 0) {
                 const cardRace = card.dataset.race;
                 if (!selectedRaces.includes(cardRace)) {
@@ -62,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             }
 
-            // Check hair color filter
+
             if (shouldShow && selectedColors.length > 0) {
                 const cardColor = card.dataset.color;
                 if (!selectedColors.includes(cardColor)) {
@@ -70,7 +90,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             }
 
-            // Check price filter
+
             if (shouldShow && minPrice !== null && maxPrice !== null) {
                 const cardPrice = parseFloat(card.dataset.price);
                 if (cardPrice < minPrice || cardPrice > maxPrice) {
@@ -78,10 +98,21 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             }
 
-            // Show or hide the card
+
+            if (shouldShow) {
+                if (filterByCourse && !card.classList.contains('Course')) {
+                    shouldShow = false;
+                }
+                if (filterBySport && !card.classList.contains('Sport')) {
+                    shouldShow = false;
+                }
+            }
+
+
             card.style.display = shouldShow ? 'block' : 'none';
         });
     }
+
 
     adaptHeaderHeight()
 
