@@ -112,19 +112,22 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function adaptHeaderHeight() {
     // Get the header element (adjust selector if needed)
-    var header = document.querySelector('header'); // Change selector if your theme uses a different class or ID for the header
-    console.log('adapt header')
-    console.log(header)
+    const header = document.querySelector('header'); // Change selector if your theme uses a different class or ID for the header
+    const innerHeader = document.querySelector('.header-inner')
+    const mainCustomContent = document.querySelector('.main-custom-content');
+
     // Get the height of the header
-    var headerHeight = header.offsetHeight;
+    const headerHeight = header.offsetHeight;
+    const innerHeaderWidth = innerHeader.offsetWidth;
 
     // Apply the height to your template (or log it for testing)
     console.log('Header height:', headerHeight);
-
+    console.log('Header inner width', innerHeaderWidth)
     // Optionally, you can adjust the margin or padding of other elements based on the header height
-    var mainCustomContent = document.querySelector('.main-custom-content'); // Change selector to match your main content area
+    // Change selector to match your main content area
     if (mainCustomContent) {
         mainCustomContent.style.marginTop = headerHeight + 'px';
+        mainCustomContent.style.maxWidth = innerHeaderWidth + 'px';
     }
 }
 function showPricesOnRange(lowerSlider, upperSlider) {

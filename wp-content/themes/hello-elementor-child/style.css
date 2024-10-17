@@ -24,7 +24,6 @@ License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
 /* Name=Default */
 
-
 /* Custom style - Horse widget */
 
 .horses-list {
@@ -40,7 +39,7 @@ License URI: https://www.gnu.org/licenses/gpl-3.0.html
     background-color: white;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
 }
 
 .horses-list .selling {
@@ -157,9 +156,8 @@ License URI: https://www.gnu.org/licenses/gpl-3.0.html
     font-weight: bold;
 }
 
-.horses-list a, .horses-list a:hover, a:focus {
-    color: black;
-    text-decoration: none;
+.horses-list .card-button:hover a {
+    opacity: 0.8;
 }
 
 .horses-list .separator {
@@ -172,6 +170,36 @@ License URI: https://www.gnu.org/licenses/gpl-3.0.html
 }
 
 /* HORSE FILTERS */
+
+.filter-options {
+  display: flex;
+  flex-direction: column;
+}
+
+.filter-options label {
+  --gap: 1rem;
+  display: flex;
+  align-items: center;
+  gap: var(--gap);
+}
+
+.filter-options input[type="checkbox"] {
+  --size: 20px;
+  --border-color: #7C8B9D;
+
+  appearance: none;
+  border: 2px solid var(--border-color);
+  width: var(--size);
+  height: var(--size);
+}
+
+.filter-options input[type="checkbox"]:checked {
+  --background-color: var(--e-global-color-primary);
+  --border-color: var(--e-global-color-primary);
+
+  border: 2px solid var(--border-color);
+  background-color: var(--background-color);
+}
 
 .filter-price-wrapper {
     display: flex;
@@ -369,5 +397,289 @@ License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
 .filter-price-wrapper .filter-price-wrapper .price-wrap label {
     text-align: right;
+}
+
+/* ================ SINGLES ============= */
+
+.global-elementor-font {
+    font-family: var(--e-global-typography-primary-font-family, "Roboto"), sans-serif;
+}
+
+.text-elementor-font {
+    font-family: var(--e-global-typography-text-font-family, "Roboto"), sans-serif;
+}
+
+.single-pouey_horse .site-header {
+    background-color: var(--e-global-color-primary, #0C1B26) !important;
+}
+
+/* ---- Single pouey horse ---- */
+
+.single-pouey_horse .single-horse {
+    padding: 2rem 10px 0 10px;
+    margin: 0 auto;
+    max-width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    row-gap: 50px;
+}
+
+.horse-section-title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.single-horse p, .single-horse span, .single-horse ul li, .single-horse ul li span {
+    font-family: var(--e-global-typography-text-font-family, "Roboto"), sans-serif;
+}
+
+.single-horse .horse-story {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+/** image part on the left  (desktop) or upper (mobile) **/
+.single-horse .story-images {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+
+
+.single-horse .story-images .thumbnail-image-block {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.single-horse .story-images .three-img-block {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 16px;
+}
+
+.single-horse .story-images img {
+    border-radius: 10px;
+    width: 100%;
+    object-fit: cover;
+    aspect-ratio: 1;
+}
+
+.single-horse .story-images .video-block {
+    width: 100%;
+    flex-grow: 1;
+    position: relative;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.single-horse .story-images .video-block iframe {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-radius: 10px;
+}
+
+/* Description part */
+
+.horse-details-story {
+
+}
+
+.horse-details-story .horse-title-wrapper {
+    display: flex;
+    flex-direction: column;
+    row-gap: 3px;
+}
+
+.horse-details-story .horse-title-wrapper .horse-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 0;
+}
+
+.horse-details-story .horse-title-wrapper .stars {
+    padding: 5px 0;
+    display: flex;
+    column-gap: 3px;
+}
+
+.horse-details-story .horse-main-feature {
+    padding-left: 0;
+    list-style: none;
+}
+
+.horse-details-story .horse-main-feature li {
+    font-weight: bold;
+}
+
+.horse-details-story .horse-main-feature li span {
+    font-weight: normal;
+}
+
+/* descriptions blocks */
+.single-horse .horse-details-story .horse-description-wrapper {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+.horse-details-story .horse-description-wrapper ul {
+    padding-left: 0;
+    list-style: none;
+}
+
+.horse-details-story .price-wrapper .horse-sub-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+}
+
+.horse-details-story .price {
+    font-size: 32px;
+    font-weight: bold;
+}
+
+/* horse results title */
+
+.horse-results .results-title .title {
+    text-align: center;
+}
+
+.horse-results .results-title {
+    margin-bottom: 40px;
+}
+
+/* Accordeon part */
+
+.accordeon-wrapper {
+    max-width: 1128px;
+    margin: 0 auto;
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+    border-radius: 10px;
+}
+
+.single-horse .horse-results input {
+    position: absolute;
+    opacity: 0;
+    z-index: -1;
+}
+
+.single-horse .horse-results .collapsible-accordion {
+    margin: 10px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+.single-horse .horse-results .collapsible-item-label {
+    display: flex;
+    justify-content: space-between;
+    padding: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    background: #fff;
+    color: black;
+    border-top: 1px solid  rgba(9, 30, 66, 0.13);
+}
+
+.single-horse .horse-results .collapsible-accordion:nth-of-type(1) .collapsible-item-label {
+    border-top: none;
+}
+
+.single-horse .horse-results .collapsible-item-label::after {
+    content: "";
+    width: 24px;
+    height: 24px;
+    background-image: url("./assets/images/chevron-down.svg");
+    text-align: center;
+    transition: all 0.35s;
+}
+.single-horse .horse-results .collapsible-item-content {
+    max-height: 0;
+    padding: 0 1em;
+    background: white;
+    transition: all 0.35s;
+}
+.single-horse input:checked + .collapsible-item-label::after {
+    content: "";
+    background-image: url("./assets/images/chevron-up.svg");
+}
+
+.single-horse input:checked ~ .collapsible-item-content {
+    max-height: 100vh;
+    padding: 1em;
+}
+
+/* form custom style */
+.horse-contact .horse-contact-title {
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.horse-contact .horse-contact-title .title {
+    text-align: center;
+}
+
+.horse-contact .wpcf7-form label {
+    font-weight: bold;
+}
+
+.horse-contact .wpcf7-form .wpcf7-form-control-wrap .wpcf7-form-control {
+    margin-top: 10px;
+}
+
+
+.horse-contact .wpcf7-submit {
+    min-width: 343px;
+    margin: 20px auto 0 auto;
+    border: none;
+    border-radius: 10px;
+    max-width: 343px;
+    background-color: #4a9278;
+    color: #fff;
+    font-weight: bold;
+}
+
+.horse-contact .wpcf7-submit:hover {
+    border: none;
+    border-radius: 10px;
+    background-color: #4a9278;
+    color: #fff;
+    font-weight: bold;
+    opacity: 0.8;
+}
+
+
+@media screen and (min-width: 768px) {
+
+    .single-horse {
+        padding-top: var(--padding-top, 5rem);
+        max-width: 1140px;
+        row-gap: 160px;
+    }
+
+    .single-horse .horse-story{
+        display: flex;
+        flex-direction: row;
+        row-gap: 20px;
+        column-gap: 100px;
+    }
+
+
+    .single-horse .horse-story .horse-details-story {
+        min-width: 50%;
+        display: flex;
+        flex-direction: column;
+        row-gap: 20px;
+    }
 }
 

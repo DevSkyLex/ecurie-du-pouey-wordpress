@@ -79,23 +79,6 @@ class Horses extends Widget_Base {
 
         $horses = new \WP_Query($args);
 
-        // Get all races for checkbox filters (this is basic, you can adjust it based on how race data is stored)
-//        $all_races = get_posts([
-//            'post_type' => 'pouey_horse',
-//            'posts_per_page' => -1,
-//            'fields' => 'ids'
-//        ]);
-
-//        $race_filters = array_unique(array_map(function ($post_id) {
-//            return get_field('race', $post_id);
-//        }, $all_races));
-
-//        echo "<div class='horse-filters'>";
-//        foreach ($race_filters as $race) {
-//            echo "<label><input type='checkbox' class='race-filter' value='" . esc_attr($race) . "'> " . esc_html($race) . "</label>";
-//        }
-//        echo "</div>";
-
         echo "<div class='horses-list'>";
 
         if ($horses->have_posts()) {
@@ -104,12 +87,9 @@ class Horses extends Widget_Base {
 
                 $horse_name = get_field('pouey-horse');
                 $horse_image = get_field('image_du_cheval');
-                $horse_race = get_field('race');
-                $horse_sex = get_field('sexe');
                 $button_text = get_field('texte_du_bouton');
                 $horse_link = get_permalink();
                 $star_number = get_field('nombre_etoiles');
-                $horse_status = get_field('statut_du_cheval');
 
                 $horse_image = $horse_image ?: 'https://images.pexels.com/photos/635499/pexels-photo-635499.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1';
                 $horse_name = $horse_name ?: get_the_title();
@@ -142,9 +122,6 @@ class Horses extends Widget_Base {
                     echo "<span><i class='fa-solid fa-star'></i></span>";
                 }
                 echo "        </div>";
-                echo "      </div>";
-                echo "      <div class='horse-favoris'>";
-                echo "        <span><i class='fa-solid fa-heart'></i></span>";
                 echo "      </div>";
                 echo "    </div>";
                 echo "    <hr class='separator'>";
